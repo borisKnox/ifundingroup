@@ -18,7 +18,7 @@
                     <h4>INVESTMENTS TO DATE</h4>
                 </div>
                 <div class="card-body">
-                    59
+                    59000
                 </div>
             </div>
         </div>
