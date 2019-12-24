@@ -1,0 +1,59 @@
+@charset "utf-8";
+
+.contact_masthead {
+  height: 110vh;
+  min-height: 500px;
+  background-image: url('../images/mentors.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media only screen and (max-width: 320px) {
+  .contact_masthead{
+    height:115vh;
+    background-position: 60% 100%;
+    }
+}
+@media all and (max-width: 480px) and (min-width: 321px){
+  .contact_masthead{
+     height:100vh;
+     background-position: 60% 100%;
+    }
+}
+@media all and (max-width: 900px) and (min-width: 520px){
+  .contact_masthead{
+  height:125vh;
+  }
+
+}
+
+/*accordian*/
+  .accordion .card {
+    border: none;
+    margin-bottom: 5px;
+  }
+  .accordion .card-header {
+    background: -webkit-linear-gradient(bottom, #1f4037, #99f2c8);
+    padding-top: 7px;
+    padding-bottom: 7px;
+  }
+  .accordion .card-header h2 {
+    color: #fff;
+    font-size: 1rem;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+  }
+  .accordion .card-header h2 span {
+    float: left;
+    margin-top: 10px;
+  }
+  .accordion .card-header button {
+    color: #fff;
+    font-size: 1.3rem;
+    line-height: 1.3rem;
+    float: right;
+  }
+  .accordion .card-header button:hover {
+    color: #23384e;
+  }

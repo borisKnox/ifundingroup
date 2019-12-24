@@ -1,0 +1,30 @@
+@charset "utf-8";
+
+.about_masthead {
+  height: 110vh;
+  min-height: 500px;
+  background-image: url('../images/young_man.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media only screen and (max-width: 320px) {
+  .about_masthead{
+    height:115vh;
+    background-position: 60% 100%;
+    }
+}
+@media all and (max-width: 480px) and (min-width: 321px){
+  .about_masthead{
+     height:100vh;
+     background-position: 60% 100%;
+    }
+}
+@media all and (max-width: 900px) and (min-width: 520px){
+  .about_masthead{
+  height:125vh;
+  }
+
+}
+

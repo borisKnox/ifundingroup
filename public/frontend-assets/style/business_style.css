@@ -1,0 +1,30 @@
+@charset "utf-8";
+.business_masthead {
+  height: 100vh;
+  min-height: 500px;
+  background-image: url('../images/business.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media only screen and (max-width: 320px) {
+  .business_masthead{
+    height:150vh;
+    background-position: 100% 100%;
+  }
+
+}
+@media all and (max-width: 480px) and (min-width: 321px){
+  .business_masthead {
+     height:110vh;
+     background-position: 60% 100%;
+    }
+}
+@media all and (max-width: 900px) and (min-width: 520px){
+  .business_masthead {
+  height:100vh;
+  }
+
+}
+
