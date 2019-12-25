@@ -154,7 +154,7 @@
                                             <h2>Investments to date</h2>
                                         </div>
                                     </div>
-                                    <h2>$59</h2>
+                                    <h2>$5900</h2>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
