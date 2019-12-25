@@ -13,6 +13,11 @@ class DashboardController extends Controller
         return view('dashboard.dashboard', compact('user'));
     }
 
+    public function old(){
+        $user = Auth::user();
+        return view('dashboard.dashboard-old', compact('user'));
+    }
+
     public function earningHistory(){
         $user = Auth::user();
         return view('dashboard.earning-history', compact('user'));
