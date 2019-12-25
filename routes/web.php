@@ -57,6 +57,7 @@ Route::get('/contact-us', 'Dashboard\ContactUsController@index')->name('contactu
 Route::middleware(['auth'])->prefix('dashboard')->group(function () {
 
     Route::get('/', 'Dashboard\DashboardController@index')->name('dashboard');
+    Route::get('/money', 'Dashboard\DashboardController@money')->name('money');
     Route::get('/old', 'Dashboard\DashboardController@old')->name('dashboardold');
     Route::get('/earning-history', 'Dashboard\DashboardController@earningHistory')->name('earningHistory');
     Route::get('/lend-now', 'Dashboard\DashboardController@lendNow')->name('lendNow');
