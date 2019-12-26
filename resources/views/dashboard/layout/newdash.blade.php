@@ -48,6 +48,13 @@
     <!-- main CSS
 		============================================ -->
     <link rel="stylesheet" href="/nokia/css/main.css">
+    <!-- datapicker CSS
+		============================================ -->
+    <link rel="stylesheet" href="/nokia/css/datapicker/datepicker3.css">
+    <!-- bootstrap select CSS
+		============================================ -->
+    <link rel="stylesheet" href="/nokia/css/bootstrap-select/bootstrap-select.css">
+    <link rel="stylesheet" href="/nokia/css/chosen/chosen.css">
     <!-- style CSS
 		============================================ -->
     <link rel="stylesheet" href="/nokia/style.css">
@@ -181,6 +188,13 @@
     <script src="/nokia/js/flot/jquery.flot.resize.js"></script>
     <script src="/nokia/js/flot/curvedLines.js"></script>
     <script src="/nokia/js/flot/flot-active.js"></script>
+     <!-- Input Mask JS
+		============================================ -->
+    <script src="/nokia/js/jasny-bootstrap.min.js"></script>
+     <!-- icheck JS
+		============================================ -->
+    <script src="/nokia/js/icheck/icheck.min.js"></script>
+    <script src="/nokia/js/icheck/icheck-active.js"></script>
     <!-- knob JS
 		============================================ -->
     <script src="/nokia/js/knob/jquery.knob.js"></script>
@@ -196,6 +210,16 @@
     <!-- plugins JS
 		============================================ -->
     <script src="/nokia/js/plugins.js"></script>
+     <!-- bootstrap select JS
+		============================================ -->
+    <script src="/nokia/js/bootstrap-select/bootstrap-select.js"></script>
+    <!--  chosen JS
+		============================================ -->
+    <script src="/nokia/js/chosen/chosen.jquery.js"></script>
+     <!-- datapicker JS
+		============================================ -->
+    <script src="/nokia/js/datapicker/bootstrap-datepicker.js"></script>
+    <script src="/nokia/js/datapicker/datepicker-active.js"></script>
 	<!--  Chat JS
 		============================================ -->
     <script src="/nokia/js/chat/moment.min.js"></script>

@@ -65,6 +65,7 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::get('/withdrawal', 'Dashboard\DashboardController@withdrawal')->name('withdrawal');
 
     Route::resource('/user', 'Dashboard\UserController');
+    Route::resource('/userold', 'Dashboard\UseroldController');
 
     Route::prefix('pages')->group(function () {
 
