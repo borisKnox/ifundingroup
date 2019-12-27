@@ -6,7 +6,7 @@
         <li class=""><a href="{{ route('earningHistory') }}" >Earning history</a></li>
         <li class=""><a href="{{ route('withdrawal') }}" >Withdrawal</a></li>
         <li class=""><a href="{{ route('lendNow') }}" >Lend now</a></li>
-        <li class=""><a href="{{ route('borrowerNow') }}" >Borrower now</a></li>
+        <li class=""><a href="{{ route('borrowerNow') }}" >Borrow now</a></li>
     </ul>
 @endsection
 @section('content')
@@ -148,7 +148,7 @@
                                             </div> -->
                                             <div class="form-group ic-cmp-int form-elet-mg res-mg-fcs">
                                                 <div class="nk-int-st">
-                                                <input type="number" class="form-control" name="zip_code" placeholder="zip Code" value="{{ $user->zip_code }}">
+                                                <input type="text" class="form-control" name="zip_code" placeholder="zip Code" data-mask="99999-9999" value="{{ $user->zip_code }}">
                                                 </div>
                                             </div>
                                             <!-- <div class="input-group">
@@ -161,7 +161,7 @@
                                                     <i class="notika-icon notika-phone"></i>
                                                 </div>
                                                 <div class="nk-int-st">
-                                                    <input type="text" class="form-control" name="phone" value="{{ $user->phone }}" placeholder="Mobile Phone Number">
+                                                    <input type="text" class="form-control" name="phone" value="{{ $user->phone }}" data-mask="(999) 999-9999" placeholder="Mobile Phone Number">
                                                 </div>
                                             </div>
                                             <!-- <div class="input-group">
@@ -185,22 +185,21 @@
                                             <h5 class="setting-user">Home Ownership</h5>
                                             <div class="form-group" align="left">
                                                 <div class="fm-checkbox">
-                                                    <label class=""><div class="iradio_square-green checked" style="position: relative;"><input type="radio" name="home_ownership" value="Recent" class="i-checks" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> <i></i> Recent</label>
+                                                    <label><input type="radio" checked="" class="i-checks"> <i></i> Recent</label>
                                                 </div>
                                                 <!-- <div class="form-check">
                                                     <input type="radio" class="form-check-input" name="home_ownership" value="Recent">
                                                     <label class="form-check-label">Recent</label>
                                                 </div> -->
                                                 <div class="fm-checkbox">
-                                                    <label class=""><div class="iradio_square-green " style="position: relative;"><input type="radio" name="home_ownership" value="Own" class="i-checks" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> <i></i> Own</label>
+                                                    <label><input type="radio" class="i-checks"> <i></i> Own</label>
                                                 </div>
                                                 <!-- <div class="form-check">
                                                     <input type="radio" class="form-check-input" name="home_ownership" value="Own">
                                                     <label class="form-check-label">Own</label>
                                                 </div> -->
                                                 <div class="fm-checkbox">
-                                                    <label class=""><div class="iradio_square-green " style="position: relative;"><input type="radio" name="home_ownership"
-                                                        value="Living with parents" class="i-checks" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> <i></i> Living with parents</label>
+                                                    <label><input type="radio" class="i-checks"> <i></i> Living with parents</label>
                                                 </div>
                                                 <!-- <div class="form-check">
                                                     <input type="radio" class="form-check-input" name="home_ownership"
@@ -239,8 +238,7 @@
                                             <br>
                                             <div class="form-group ic-cmp-int float-lb floating-lb">
                                                 <div class="nk-int-st">
-                                                    <input type="text" class="form-control" name="school_name" value="{{ $user->school_name }}">
-                                                    <label class="nk-label">School Name</label>
+                                                    <input type="text" class="form-control" placeholder='School Name' name="school_name" value="{{ $user->school_name }}">
                                                 </div>
                                             </div>
                                             <!-- <div class="input-group">
@@ -248,8 +246,7 @@
                                             </div> -->
                                             <div class="form-group ic-cmp-int float-lb floating-lb">
                                                 <div class="nk-int-st">
-                                                    <input type="text" class="form-control" name="undergraduate" value="{{ $user->undergraduate }}">
-                                                    <label class="nk-label">Undergraduate Program</label>
+                                                    <input type="text" class="form-control" placeholder='Undergraduate Program' name="undergraduate" value="{{ $user->undergraduate }}">
                                                 </div>
                                             </div>
                                             <!-- <div class="input-group">
@@ -275,14 +272,14 @@
                                             <h6 class="text-left">Employment status</h6>
                                             <div class="form-group" align="left">
                                                 <div class="fm-checkbox">
-                                                    <label class=""><div class="iradio_square-green checked" style="position: relative;"><input type="radio" name="emp_status" value="Current" class="i-checks" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> <i></i> Current</label>
+                                                    <label><input type="radio" checked="" class="i-checks"> <i></i> Current</label>
                                                 </div>
                                                 <!-- <div class="form-check">
                                                     <input type="radio" class="form-check-input" name="emp_status" value="Current">
                                                     <label class="form-check-label">Current</label>
                                                 </div> -->
                                                 <div class="fm-checkbox">
-                                                    <label class=""><div class="iradio_square-green " style="position: relative;"><input type="radio" name="emp_status" value="Future" class="i-checks" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> <i></i> Future</label>
+                                                    <label><input type="radio" class="i-checks"> <i></i> Future</label>
                                                 </div>
                                                 <!-- <div class="form-check">
                                                     <input type="radio" class="form-check-input" name="emp_status" value="Future">
@@ -291,8 +288,7 @@
                                             </div>
                                             <div class="form-group ic-cmp-int float-lb floating-lb">
                                                 <div class="nk-int-st">
-                                                    <input type="text" class="form-control" name="emp_name" value="{{ $user->emp_name }}">
-                                                    <label class="nk-label">Employers Name</label>
+                                                    <input type="text" class="form-control" placeholder='Employers Name' name="emp_name" value="{{ $user->emp_name }}">
                                                 </div>
                                             </div>
                                             <!-- <div class="input-group">
@@ -301,8 +297,7 @@
                                             </div> -->
                                             <div class="form-group ic-cmp-int float-lb floating-lb">
                                                 <div class="nk-int-st">
-                                                    <input type="text" class="form-control" name="income_total" value="{{ $user->income_total }}">
-                                                    <label class="nk-label">Total Individual Annual Income</label>
+                                                    <input type="text" class="form-control" name="income_total" value="{{ $user->income_total }}" placeholder='Total Individual Annual Income' >
                                                 </div>
                                             </div>
                                             <!-- <div class="input-group">
@@ -311,8 +306,7 @@
                                             </div> -->
                                             <div class="form-group ic-cmp-int float-lb floating-lb">
                                                 <div class="nk-int-st">
-                                                    <input type="text" class="form-control" name="exp_total" value="{{ $user->exp_total }}">
-                                                    <label class="nk-label">Total years of Professional Work Experience</label>
+                                                    <input type="text" class="form-control" name="exp_total" value="{{ $user->exp_total }}" placeholder='Total years of Professional Work Experience' >
                                                 </div>
                                             </div>
                                             <!-- <div class="input-group">

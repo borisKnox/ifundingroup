@@ -55,6 +55,7 @@
 		============================================ -->
     <link rel="stylesheet" href="/nokia/css/bootstrap-select/bootstrap-select.css">
     <link rel="stylesheet" href="/nokia/css/chosen/chosen.css">
+    @yield('css')
     <!-- style CSS
 		============================================ -->
     <link rel="stylesheet" href="/nokia/style.css">
@@ -224,6 +225,7 @@
 		============================================ -->
     <script src="/nokia/js/chat/moment.min.js"></script>
     <script src="/nokia/js/chat/jquery.chat.js"></script>
+    @yield('script')
     <!-- main JS
 		============================================ -->
     <script src="/nokia/js/main.js"></script>

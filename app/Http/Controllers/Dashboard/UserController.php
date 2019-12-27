@@ -127,7 +127,6 @@ class UserController extends Controller
         $user->mobile = $request->input('zip_code');
         $user->mobile = $request->input('phone');
         $user->mobile = $request->input('dob');
-        $user->mobile = $request->input('home_ownership');
         $user->mobile = $request->input('check_graduation');
         $user->mobile = $request->input('school_name');
         $user->mobile = $request->input('undergraduate');
@@ -136,6 +135,24 @@ class UserController extends Controller
         $user->mobile = $request->input('emp_name');
         $user->mobile = $request->input('income_total');
         $user->mobile = $request->input('exp_total');
+        $user->first_name = $request->input('first_name');
+        $user->last_name = $request->input('last_name');
+        $user->home_address = $request->input('home_address');
+        $user->apartment = $request->input('apartment');
+        $user->city = $request->input('city');
+        $user->stat = $request->input('stat');
+        $user->zip_code = $request->input('zip_code');
+        $user->phone = $request->input('phone');
+        $user->dob = $request->input('dob');
+        $user->home_ownership = $request->input('home_ownership');
+        $user->check_graduation = $request->input('check_graduation');
+        $user->school_name = $request->input('school_name');
+        $user->undergraduate = $request->input('undergraduate');
+        $user->graduation_date = $request->input('graduation_date');
+        $user->emp_status = $request->input('emp_status');
+        $user->emp_name = $request->input('emp_name');
+        $user->income_total = $request->input('income_total');
+        $user->exp_total = $request->input('exp_total');
         // check if the avatar is uploded, then add it to the update fucntion
         if (!is_null($avatar)) {
             $user->avatar = $avatar;

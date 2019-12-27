@@ -6,7 +6,7 @@
         <li class=""><a href="{{ route('earningHistory') }}" >Earning history</a></li>
         <li class=""><a href="{{ route('withdrawal') }}" >Withdrawal</a></li>
         <li class=""><a href="{{ route('lendNow') }}" >Lend now</a></li>
-        <li class=""><a href="{{ route('borrowerNow') }}" >Borrower now</a></li>
+        <li class=""><a href="{{ route('borrowerNow') }}" >Borrow now</a></li>
     </ul>
 @endsection
 @section('content')
@@ -18,7 +18,7 @@
                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                         <div class="inbox-status">
                             <ul class="inbox-st-nav inbox-ft">
-                                <li><a href="{{ route('home') }}"><i class="notika-icon notika-house"></i> Home</a></li>
+                                <li><a href="{{ route('dashboard') }}"><i class="notika-icon notika-house"></i> Dashboard</a></li>
                                 <li><a href="{{ route('user.edit', $user->id) }}"><i class="notika-icon notika-app"></i> Settings</a></li>
                             </ul>
                         </div>
@@ -35,7 +35,7 @@
                                             <h2>Investments to date</h2>
                                         </div>
                                     </div>
-                                    <h2>$5900</h2>
+                                    <h2>50</h2>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">

@@ -4653,3 +4653,13 @@ body.box-layout {
     padding: 17px;
     color: #0095ff;
 }
+.contact-ad-hd i{
+    font-size: xx-large;
+    font-weight: bold;
+}
+.contact-ad-hd h2{
+    margin:15px;
+}
+#opa:hover{
+    background-color: #2674b7;
+}
