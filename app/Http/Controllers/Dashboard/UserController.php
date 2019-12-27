@@ -118,23 +118,6 @@ class UserController extends Controller
         $user->bio = $request->input('bio');
         $user->mobile = $request->input('mobile');
 
-        $user->mobile = $request->input('first_name');
-        $user->mobile = $request->input('last_name');
-        $user->mobile = $request->input('home_address');
-        $user->mobile = $request->input('apartment');
-        $user->mobile = $request->input('city');
-        $user->mobile = $request->input('stat');
-        $user->mobile = $request->input('zip_code');
-        $user->mobile = $request->input('phone');
-        $user->mobile = $request->input('dob');
-        $user->mobile = $request->input('check_graduation');
-        $user->mobile = $request->input('school_name');
-        $user->mobile = $request->input('undergraduate');
-        $user->mobile = $request->input('graduation_date');
-        $user->mobile = $request->input('emp_status');
-        $user->mobile = $request->input('emp_name');
-        $user->mobile = $request->input('income_total');
-        $user->mobile = $request->input('exp_total');
         $user->first_name = $request->input('first_name');
         $user->last_name = $request->input('last_name');
         $user->home_address = $request->input('home_address');
