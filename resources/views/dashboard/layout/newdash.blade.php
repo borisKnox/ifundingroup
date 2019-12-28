@@ -33,6 +33,9 @@
     <!-- normalize CSS
 		============================================ -->
     <link rel="stylesheet" href="/nokia/css/normalize.css">
+      <!-- Range Slider CSS
+		============================================ -->
+    <link rel="stylesheet" href="/nokia/css/themesaller-forms.css">
     <!-- mCustomScrollbar CSS
 		============================================ -->
     <link rel="stylesheet" href="/nokia/css/scrollbar/jquery.mCustomScrollbar.min.css">
@@ -40,7 +43,8 @@
 		============================================ -->
     <link rel="stylesheet" href="/nokia/css/jvectormap/jquery-jvectormap-2.0.3.css">
     <!-- notika icon CSS
-		============================================ -->
+    ============================================ -->
+    
     <link rel="stylesheet" href="/nokia/css/notika-custom-icon.css">
     <!-- wave CSS
 		============================================ -->
@@ -196,6 +200,11 @@
 		============================================ -->
     <script src="/nokia/js/icheck/icheck.min.js"></script>
     <script src="/nokia/js/icheck/icheck-active.js"></script>
+    <!-- rangle-slider JS
+		============================================ -->
+    <script src="/nokia/js/rangle-slider/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="/nokia/js/rangle-slider/jquery-ui-touch-punch.min.js"></script>
+    <script src="/nokia/js/rangle-slider/rangle-active.js"></script>
     <!-- knob JS
 		============================================ -->
     <script src="/nokia/js/knob/jquery.knob.js"></script>

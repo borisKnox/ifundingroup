@@ -7,6 +7,9 @@
         <li class=""><a href="{{ route('withdrawal') }}" >Withdrawal</a></li>
         <li class=""><a href="{{ route('lendNow') }}" >Lend now</a></li>
         <li class=""><a href="{{ route('borrowerNow') }}" >Borrow now</a></li>
+        @if($user->role=='admin')
+        <li class=""><a href="{{ route('appsetting') }}" >App setting</a></li>
+        @endif
     </ul>
 @endsection
 @section('content')

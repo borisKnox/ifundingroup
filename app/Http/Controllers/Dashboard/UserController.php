@@ -124,6 +124,7 @@ class UserController extends Controller
         $user->apartment = $request->input('apartment');
         $user->city = $request->input('city');
         $user->stat = $request->input('stat');
+        $user->status = $request->input('status')=='on'?1:0;
         $user->zip_code = $request->input('zip_code');
         $user->phone = $request->input('phone');
         $user->dob = $request->input('dob');

@@ -1,12 +1,15 @@
 @extends('dashboard.layout.newdash')
 @section('navmenu')
     <ul class="nav nav-pills">
-        <li class=""><a href="{{ route('dashboard') }}" >Dashboard</a></li>
+        <li class="active"><a href="{{ route('dashboard') }}" >Dashboard</a></li>
         <li class=""><a href="{{ route('money') }}" >Money</a></li>
         <li class=""><a href="{{ route('earningHistory') }}" >Earning history</a></li>
         <li class=""><a href="{{ route('withdrawal') }}" >Withdraw</a></li>
-        <li class="active"><a href="{{ route('lendNow') }}" >Lend now</a></li>
+        <li class=""><a href="{{ route('lendNow') }}" >Lend now</a></li>
         <li class=""><a href="{{ route('borrowerNow') }}" >Borrower now</a></li>
+        @if($user->role=='admin')
+        <li class=""><a href="{{ route('appsetting') }}" >App setting</a></li>
+        @endif
     </ul>
 @endsection
 @section('content')
@@ -18,7 +21,7 @@
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                         <div class="inbox-status">
                             <ul class="inbox-st-nav inbox-ft">
-                                <li><a data-toggle="tab" href="#menu1" aria-expanded="true"><i class="notika-icon notika-dollar"></i> Lend now</a></li>
+                                <li><a href="{{ route('home') }}"><i class="notika-icon notika-house"></i> Home</a></li>
                             </ul>
                         </div>
                     </div>

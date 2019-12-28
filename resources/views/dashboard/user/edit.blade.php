@@ -7,6 +7,9 @@
         <li class=""><a href="{{ route('withdrawal') }}" >Withdrawal</a></li>
         <li class=""><a href="{{ route('lendNow') }}" >Lend now</a></li>
         <li class=""><a href="{{ route('borrowerNow') }}" >Borrow now</a></li>
+        @if($user->role=='admin')
+        <li class=""><a href="{{ route('appsetting') }}" >App setting</a></li>
+        @endif
     </ul>
 @endsection
 @section('content')
@@ -36,7 +39,11 @@
                                         <div class="card-body">
                                             <div class="form-group">
                                                 <div class="fm-checkbox">
-                                                    <label class="hover"><div class="icheckbox_square-green checked hover" style="position: relative;"><input type="checkbox" name="status" checked="" class="i-checks" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> <i></i>Status</label>
+                                                    @if($user->status!=1)
+                                                    <label><input type="checkbox" name='status' class="i-checks"> <i></i> Status</label>
+                                                    @else
+                                                    <label><input type="checkbox" name='status' class="i-checks" checked> <i></i> Status</label>
+                                                    @endif
                                                 </div>
                                                 <!-- <label for="my-input">Status</label>
                                                 <input id="toggle-one" type="checkbox" checked data-toggle="toggle" data-on="Ready"

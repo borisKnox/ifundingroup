@@ -59,10 +59,14 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::get('/', 'Dashboard\DashboardController@index')->name('dashboard');
     Route::get('/money', 'Dashboard\DashboardController@money')->name('money');
     Route::get('/old', 'Dashboard\DashboardController@old')->name('dashboardold');
+    Route::get('/appsetting', 'Dashboard\DashboardController@appsetting')->name('appsetting');
     Route::get('/earning-history', 'Dashboard\DashboardController@earningHistory')->name('earningHistory');
     Route::get('/lend-now', 'Dashboard\DashboardController@lendNow')->name('lendNow');
     Route::get('/borrower-now', 'Dashboard\DashboardController@borrowerNow')->name('borrowerNow');
+    Route::post('/borrower-request', 'Dashboard\DashboardController@borrowerRequest')->name('borrowerRequest');
+    Route::post('/lender-request', 'Dashboard\DashboardController@lenderRequest')->name('lenderRequest');
     Route::get('/withdrawal', 'Dashboard\DashboardController@withdrawal')->name('withdrawal');
+    Route::get('/invest/{id}', 'Dashboard\DashboardController@invest');
 
     Route::resource('/user', 'Dashboard\UserController');
     Route::resource('/userold', 'Dashboard\UseroldController');
@@ -106,7 +110,8 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::group(['middleware' => ['checkRole']], function () {
         Route::get('admin/user')->name('user.index');
         Route::get('admin/user/create', 'Dashboard\UserController@create')->name('user.create');
-        Route::get('admin/user')->name('user.store');
+        Route::get('admin/user/')->name('user.store');
+        Route::post('admin/user/store','Dashboard\UserController@store');
     });
 
 });

@@ -41,25 +41,11 @@ var FormWizard = function () {
                         required: true
                     },
                     //profile
-                    citisencard: {
-                        minlength: 12,
-                        maxlength: 12,
-                        required: true
-                    },
                     email: {
                         required: true,
                         email: true
                     },
                     phone: {
-                        required: true
-                    },
-                    gender: {
-                        required: true
-                    },
-                    address: {
-                        required: true
-                    },
-                    city: {
                         required: true
                     },
                     //payment

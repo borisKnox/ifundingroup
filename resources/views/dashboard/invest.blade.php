@@ -12,8 +12,8 @@
         <li class=""><a href="{{ route('money') }}" >Money</a></li>
         <li class=""><a href="{{ route('earningHistory') }}" >Earning history</a></li>
         <li class=""><a href="{{ route('withdrawal') }}" >Withdrawal</a></li>
-        <li class=""><a href="{{ route('lendNow') }}" >Lend now</a></li>
-		<li class="active"><a href="{{ route('borrowerNow') }}" >Borrow now</a></li>
+        <li class="active"><a href="{{ route('lendNow') }}" >Lend now</a></li>
+		<li class=""><a href="{{ route('borrowerNow') }}" >Borrow now</a></li>
 		@if($user->role=='admin')
         <li class=""><a href="{{ route('appsetting') }}" >App setting</a></li>
         @endif
@@ -34,7 +34,7 @@
 				<div class="col-md-12">
 					<div class="portlet box blue" id="form_wizard_1">
 						<div class="portlet-body form">
-							<form action="{{route('borrowerRequest')}}" class="form-horizontal" id="submit_form" method="POST" enctype="multipart/form-data">
+							<form action="{{route('lenderRequest')}}" class="form-horizontal" id="submit_form" method="POST" enctype="multipart/form-data">
 								<input type="hidden" name="id" value="{{ $user->id }}">
 								@csrf
 								<div class="form-wizard">
@@ -119,16 +119,6 @@
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="control-label col-md-3">Indian Citizen Number <span class="required">
-													* </span>
-													</label>
-													<div class="col-md-4">
-														<input type="text" class="form-control" name="citisencard"/>
-														<span class="help-block">
-														Provide your Citizen Number </span>
-													</div>
-												</div>
-												<div class="form-group">
 													<label class="control-label col-md-3">Phone Number <span class="required">
 													* </span>
 													</label>
@@ -138,88 +128,12 @@
 														Provide your phone number </span>
 													</div>
 												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">Gender <span class="required">
-													* </span>
-													</label>
-													<div class="col-md-4">
-														<div class="radio-list">
-															<label>
-															<input type="radio" name="gender" value="M" data-title="Male"/>
-															Male </label>
-															<label>
-															<input type="radio" name="gender" value="F" data-title="Female"/>
-															Female </label>
-														</div>
-														<div id="form_gender_error">
-														</div>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">Address <span class="required">
-													* </span>
-													</label>
-													<div class="col-md-4">
-														<input type="text" class="form-control" name="address"/>
-														<span class="help-block">
-														Provide your street address </span>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">City/Town <span class="required">
-													* </span>
-													</label>
-													<div class="col-md-4">
-														<input type="text" class="form-control" name="city"/>
-														<span class="help-block">
-														Provide your city or town </span>
-													</div>
-												</div>
 											</div>
 											<div class="tab-pane" id="tab2">
 												<h3 class="block">Provide your profile details</h3>
+												
 												<div class="form-group">
-													<label class="control-label col-md-3"> Project Name<span class="required">
-													* </span>
-													</label>
-													<div class="col-md-4">
-														<input type="text" class="form-control" name="prjname"/>
-														<span class="help-block">
-														Provide your project illustraition</span>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3"> INTEREST RATE (%)<span class="required">
-													* </span>
-													</label>
-													<div class="col-md-4">
-														<input type="number" class="form-control" name="itsrate"/>
-														<span class="help-block">
-														Provide your project's interest rate</span>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3"> LTV (%)<span class="required">
-													* </span>
-													</label>
-													<div class="col-md-4">
-														<input type="number" class="form-control" name="ltv"/>
-														<span class="help-block">
-														Provide your project's LTV</span>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3"> TERM (MONTHS)<span class="required">
-													* </span>
-													</label>
-													<div class="col-md-4">
-														<input type="number" class="form-control" name="trmon"/>
-														<span class="help-block">
-														Provide your project's term</span>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3"> Loan Expiration<span class="required">
+													<label class="control-label col-md-3"> Invest Expiration<span class="required">
 													* </span>
 													</label>
 													<div class="col-md-4">
@@ -229,29 +143,13 @@
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="control-label col-md-3"> Target Raise(USD)<span class="required">
+													<label class="control-label col-md-3"> Invest Amount(USD)<span class="required">
 													* </span>
 													</label>
 													<div class="col-md-4">
 														<input type="text" placeholder="$" class="form-control" name="prj_target"/>
 														<span class="help-block">
 														1000000 </span>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3"> Project Photo<span class="required">
-													* </span>
-													</label>
-													<div class="col-md-4">
-														<input type="file" class="form-control" name="prj_file"/>
-														<span class="help-block">
-														jpg,png </span>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">Remarks</label>
-													<div class="col-md-4">
-														<textarea class="form-control" rows="3" name="remarks"></textarea>
 													</div>
 												</div>
 											</div>
@@ -338,45 +236,11 @@
 													</div>
 												</div>
 												<h4 class="form-section">Profile</h4>
-												<div class="form-group">
-													<label class="control-label col-md-3">Indian Citizen Number:</label>
-													<div class="col-md-4">
-														<p class="form-control-static" data-display="citisencard">
-														</p>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">Gender:</label>
-													<div class="col-md-4">
-														<p class="form-control-static" data-display="gender">
-														</p>
-													</div>
-												</div>
+												
 												<div class="form-group">
 													<label class="control-label col-md-3">Phone:</label>
 													<div class="col-md-4">
 														<p class="form-control-static" data-display="phone">
-														</p>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">Address:</label>
-													<div class="col-md-4">
-														<p class="form-control-static" data-display="address">
-														</p>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">City/Town:</label>
-													<div class="col-md-4">
-														<p class="form-control-static" data-display="city">
-														</p>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3">Remarks:</label>
-													<div class="col-md-4">
-														<p class="form-control-static" data-display="remarks">
 														</p>
 													</div>
 												</div>
@@ -453,7 +317,7 @@
 <script type="text/javascript" src="/metronic/global/plugins/select2/select2.min.js"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="/metronic/scripts/form-wizard.js"></script>
+<script src="/metronic/scripts/form-wizard-invest.js"></script>
 <script>
     jQuery(document).ready(function() {       
         FormWizard.init();
