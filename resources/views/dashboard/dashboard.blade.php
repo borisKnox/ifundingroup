@@ -38,7 +38,7 @@
                                             <h2>Investments to date</h2>
                                         </div>
                                     </div>
-                                    <h2>50</h2>
+                                    <h2>{{count($investment)}}</h2>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
@@ -48,7 +48,7 @@
                                             <h2>Invested to date</h2>
                                         </div>
                                     </div>
-                                    <h2>$187,13</h2>
+                                    <h2>${{$investment->sum('amout')}}</h2>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
@@ -68,7 +68,7 @@
                                             <h2>Distribution-Capital</h2>
                                         </div>
                                     </div>
-                                    <h2>$4,732</h2>
+                                    <h2>$5,835</h2>
                                 </div>
                             </div>
                         </div>

@@ -53,18 +53,16 @@
                     <hr>
                     <div class="row">
                         <h2 class="section-title">Withdrawal</h2>
+                        @if(count($withdrawal)!=0)
+                        @foreach($withdrawal as $wvalue)
                         <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                             <div class="contact-list" style='box-shadow: 0 2px 8px rgba(0,0,0,.2);'>
-                                <h2>7/5/2019</h2>
-                                <p>Withdrawal processed to Akqushi at valued deposit 25000USD</p>
+                                <h2>{{$wvalue->created_at}}</h2>
+                                <p>Withdrawal processed to {{$wvalue->investment->loan->firstname}} {{$wvalue->investment->loan->firstname}} at valued deposit {{$wvalue->investment->amout}}USD</p>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                            <div class="contact-list" style='box-shadow: 0 2px 8px rgba(0,0,0,.2);'>
-                                <h2>7/5/2019</h2>
-                                <p>Withdrawal processed to Akqushi at valued deposit 25000USD</p>
-                            </div>
-                        </div>
+                        @endforeach
+                        @endif
                     </div>
                     <hr>
                     <div class="row">
@@ -91,22 +89,34 @@
                     <hr>
                     <div class="row">
                         <h2 class="section-title">Lending</h2>
+                        @if(count($investment)!=0)
+                        @foreach($investment as $ivalue)
                         <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                             <div class="contact-list" style='box-shadow: 0 2px 8px rgba(0,0,0,.2);'>
-                                <h2>5/25/2019</h2>
-                                <p>Lend to Akqushi at valued deposit 25000USD</p>
+                                <h2>{{$ivalue->created_at}}</h2>
+                                <p>Lend to {{$ivalue->loan->firstname}} {{$ivalue->firstname}} at valued deposit {{$ivalue->amout}}USD</p>
                             </div>
                         </div>
+                        @endforeach
+                        @endif
                     </div>
                     <hr>
                     <div class="row">
                         <h2 class="section-title">Borrowing</h2>
+                        @if(count($loan)!=0)
+                        @foreach($loan as $lvalue)
+                        @if(count($lvalue->investment()->get())!=0)
+                        @foreach($lvalue->investment()->get() as $invvalue)
                         <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                             <div class="contact-list" style='box-shadow: 0 2px 8px rgba(0,0,0,.2);'>
-                                <h2>8/25/2019</h2>
-                                <p>Borrow from Akqushi at valued deposit 25000USD</p>
+                                <h2>{{$invvalue->created_at}}</h2>
+                                <p>Borrow from {{$invvalue->loan->firstname}} {{$invvalue->loan->firstname}} at valued deposit  {{$invvalue->amout}}USD</p>
                             </div>
                         </div>
+                        @endforeach
+                        @endif
+                        @endforeach
+                        @endif
                     </div>
                 </div>
             </div>

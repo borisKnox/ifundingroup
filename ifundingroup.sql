@@ -11,7 +11,7 @@
  Target Server Version : 100408
  File Encoding         : 65001
 
- Date: 27/12/2019 23:22:37
+ Date: 27/12/2019 22:39:56
 */
 
 SET NAMES utf8mb4;
@@ -91,6 +91,17 @@ INSERT INTO `contact_us` VALUES (8, 'admin', 'wefsadf', 'ibrahim.shaban.1996@gma
 INSERT INTO `contact_us` VALUES (9, 'admin', 'dfhxfhnx', 'Phill4oku@yahoo.com', 'vbxvcbcvxbcxvbcxvb', NULL, '2019-12-26 22:51:17', '2019-12-26 22:51:17');
 
 -- ----------------------------
+-- Table structure for earnigns
+-- ----------------------------
+DROP TABLE IF EXISTS `earnigns`;
+CREATE TABLE `earnigns`  (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
 -- Table structure for home_pages
 -- ----------------------------
 DROP TABLE IF EXISTS `home_pages`;
@@ -119,10 +130,31 @@ INSERT INTO `home_pages` VALUES (5, 'Freelancer', 'fasdf', 'PAULA WILSON', 'Medi
 DROP TABLE IF EXISTS `investments`;
 CREATE TABLE `investments`  (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `created_at` timestamp(0) NULL DEFAULT NULL,
-  `updated_at` timestamp(0) NULL DEFAULT NULL,
+  `created_at` timestamp(0) NOT NULL DEFAULT current_timestamp(0),
+  `updated_at` timestamp(0) NOT NULL DEFAULT current_timestamp(0) ON UPDATE CURRENT_TIMESTAMP(0),
+  `firstname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `lastname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `invest_expiration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `amout` double NULL DEFAULT NULL,
+  `card_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `card_number` int(11) NULL DEFAULT NULL,
+  `cvc` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `card_expiration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `payment1` tinyint(3) NULL DEFAULT NULL,
+  `payment2` tinyint(3) NULL DEFAULT NULL,
+  `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `loanid` int(11) NULL DEFAULT NULL,
+  `userid` int(11) NULL DEFAULT NULL,
+  `bankname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of investments
+-- ----------------------------
+INSERT INTO `investments` VALUES (3, '2019-12-28 02:34:10', '2019-12-27 19:30:48', 'xcv', 'xcv', 'mmm@mmm.mm', '23/4234', 234234, '234', 234234, NULL, '23/4234', 1, NULL, '(234) 234-2342', 7, 1, 'iFounding Group');
+INSERT INTO `investments` VALUES (4, '2019-12-28 05:38:17', '2019-12-27 21:38:47', 'xcv', 'xcv', 'hussam@test.com', '12/3123', 123, '132', 123123, NULL, '12/3123', 1, NULL, '(123) 123-1231', 8, 1, 'sdsdf');
 
 -- ----------------------------
 -- Table structure for loans
@@ -154,18 +186,19 @@ CREATE TABLE `loans`  (
   `prj_expiry_date` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `prj_target` double NULL DEFAULT NULL,
   `prj_file` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `userid` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of loans
 -- ----------------------------
-INSERT INTO `loans` VALUES (5, '2019-12-28 02:38:27', '2019-12-28 02:38:27', 'adsf', 'afs', 'zxc@sdf.d', '123123123123', '(123) 123-1231', 'M', '123123123', '123123', '123123', '123123', 123123, NULL, '12/3123', 1, NULL, '123123', 123123, 123, 123, '12/3123', 123123, NULL);
-INSERT INTO `loans` VALUES (6, '2019-12-28 06:16:44', '2019-12-28 06:16:44', 'axc', 'gnh', 'hussam@test.com', '234234234234', '(243) 324-2342', 'M', 'fgfghfghfghf', 'dfdfgd', '23423', '234423', 234234, NULL, '23/4234', 1, NULL, 'yhntnt', 23, 23, 32, '32/4423', 234, NULL);
-INSERT INTO `loans` VALUES (7, '2019-12-28 06:22:11', '2019-12-28 06:22:11', 'bnm', 'ghj', 'mmm@mmm.mm', '123123123123', '(123) 123-1231', 'M', '123213123', '123213', '12312', '123', 123213, NULL, '12/3123', NULL, 2, '123', NULL, 123, 12312, '12/3123', 123213, NULL);
-INSERT INTO `loans` VALUES (8, '2019-12-28 06:27:07', '2019-12-28 06:27:07', 'bgt', 'ty', 'vnn@fgg.nn', '354345345345', '(345) 345-3453', 'M', '345435453', '3454', '345435', '34', 345345, NULL, '34/5345', 1, NULL, '34', 345, 345, 345, '34/5435', 345345, NULL);
-INSERT INTO `loans` VALUES (9, '2019-12-28 06:27:15', '2019-12-28 06:27:15', 'bgt', 'ty', 'vnn@fgg.nn', '354345345345', '(345) 345-3453', 'M', '345435453', '3454', '345435', '34', 345345, NULL, '34/5345', 1, NULL, '34', 345, 345, 345, '34/5435', 345345, NULL);
-INSERT INTO `loans` VALUES (10, '2019-12-28 06:28:09', '2019-12-28 06:28:09', 'bmm', 'vbv', 'hussam@test.com', '123123123123', '(123) 123-1231', 'M', '123123123', '123123', '12312', '123123', 123123, NULL, '12/3123', 1, NULL, '213', 213, 123215, 123123, '12/3123', 123123, 'prj_file/FTL95TRsvlPUQGcy75BauDnhTxS23z2mE4TDS2Jk.png');
+INSERT INTO `loans` VALUES (5, '2019-12-28 02:38:27', '2019-12-27 18:36:25', 'adsf', 'afs', 'zxc@sdf.d', '123123123123', '(123) 123-1231', 'M', '123123123', '123123', '123123', '123123', 123123, NULL, '12/3123', 1, NULL, '123123', 123123, 123, 123, '12/3123', 123123, NULL, 1);
+INSERT INTO `loans` VALUES (6, '2019-12-28 06:16:44', '2019-12-27 18:36:26', 'axc', 'gnh', 'hussam@test.com', '234234234234', '(243) 324-2342', 'M', 'fgfghfghfghf', 'dfdfgd', '23423', '234423', 234234, NULL, '23/4234', 1, NULL, 'yhntnt', 23, 23, 32, '32/4423', 234, NULL, 1);
+INSERT INTO `loans` VALUES (7, '2019-12-28 06:22:11', '2019-12-27 18:36:28', 'bnm', 'ghj', 'mmm@mmm.mm', '123123123123', '(123) 123-1231', 'M', '123213123', '123213', '12312', '123', 123213, NULL, '12/3123', NULL, 2, '123', NULL, 123, 12312, '12/3123', 123213, NULL, 1);
+INSERT INTO `loans` VALUES (8, '2019-12-28 06:27:07', '2019-12-27 18:36:28', 'bgt', 'ty', 'vnn@fgg.nn', '354345345345', '(345) 345-3453', 'M', '345435453', '3454', '345435', '34', 345345, NULL, '34/5345', 1, NULL, '34', 345, 345, 345, '34/5435', 345345, NULL, 1);
+INSERT INTO `loans` VALUES (9, '2019-12-28 06:27:15', '2019-12-27 18:36:30', 'bgt', 'ty', 'vnn@fgg.nn', '354345345345', '(345) 345-3453', 'M', '345435453', '3454', '345435', '34', 345345, NULL, '34/5345', 1, NULL, '34', 345, 345, 345, '34/5435', 345345, NULL, 1);
+INSERT INTO `loans` VALUES (10, '2019-12-28 06:28:09', '2019-12-27 18:36:33', 'bmm', 'vbv', 'hussam@test.com', '123123123123', '(123) 123-1231', 'M', '123123123', '123123', '12312', '123123', 123123, NULL, '12/3123', 1, NULL, '213', 213, 123215, 123123, '12/3123', 123123, 'prj_file/FTL95TRsvlPUQGcy75BauDnhTxS23z2mE4TDS2Jk.png', 1);
 
 -- ----------------------------
 -- Table structure for migrations
@@ -176,7 +209,7 @@ CREATE TABLE `migrations`  (
   `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of migrations
@@ -193,6 +226,8 @@ INSERT INTO `migrations` VALUES (9, '2019_12_09_011954_create_resumes_table', 8)
 INSERT INTO `migrations` VALUES (10, '2019_12_10_232210_add_columns_to_users_table', 9);
 INSERT INTO `migrations` VALUES (11, '2019_12_27_011828_create_investments_table', 10);
 INSERT INTO `migrations` VALUES (12, '2019_12_27_011901_create_loans_table', 10);
+INSERT INTO `migrations` VALUES (13, '2019_12_28_055504_create_earnigns_table', 11);
+INSERT INTO `migrations` VALUES (14, '2019_12_28_055621_create_withdrawals_table', 12);
 
 -- ----------------------------
 -- Table structure for password_resets
@@ -289,5 +324,24 @@ INSERT INTO `users` VALUES (2, 'ahmed', 'ahmed@test.com', NULL, '$2y$10$JJ7z7NTM
 INSERT INTO `users` VALUES (3, 'Hussam', 'hussam@test.com', NULL, '123123123', 2, NULL, '2019-12-03 01:25:15', '2019-12-03 02:12:22', 1, 'user', 'Test Test', 'avatrs/BG8xSosTaGf5Kd7E4ElrzkczhaBjeCKjB635nCY5.jpeg', '0465421332', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `users` VALUES (6, 'Abood Shaban', 'abood@abood.com', NULL, '$2y$10$wHpSFQkxESqDvTT7hjR2D.BpeogWRiEq95m8kpDC2aDAeXXZurG.m', 2, NULL, '2019-12-10 14:05:05', '2019-12-11 04:00:16', 0, 'user', NULL, NULL, NULL, NULL, NULL, NULL, 'abood', 'Shaban', 'Gaza', 'Gaza', 'Gaza', 'Gaza', '00972', '0597244786', '12/8/1229', 'Recent', 'I have graduate from collage or school', 'Sabaa', 'debluma', '2019-12-11', 'Current', 'abood Shaban', '800', '5');
 INSERT INTO `users` VALUES (8, 'zxc', 'zxc@sdf.d', NULL, '123123', 2, NULL, '2019-12-27 23:00:34', '2019-12-27 23:00:34', 1, 'user', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+-- ----------------------------
+-- Table structure for withdrawals
+-- ----------------------------
+DROP TABLE IF EXISTS `withdrawals`;
+CREATE TABLE `withdrawals`  (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `created_at` timestamp(0) NOT NULL DEFAULT current_timestamp(0),
+  `updated_at` timestamp(0) NOT NULL DEFAULT current_timestamp(0) ON UPDATE CURRENT_TIMESTAMP(0),
+  `investid` int(11) NULL DEFAULT NULL,
+  `userid` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of withdrawals
+-- ----------------------------
+INSERT INTO `withdrawals` VALUES (1, '2019-12-28 06:13:44', '2019-12-27 22:17:55', 4, 1);
+INSERT INTO `withdrawals` VALUES (2, '2019-12-28 06:14:40', '2019-12-27 22:18:01', 4, 1);
 
 SET FOREIGN_KEY_CHECKS = 1;

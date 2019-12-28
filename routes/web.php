@@ -66,6 +66,8 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::post('/borrower-request', 'Dashboard\DashboardController@borrowerRequest')->name('borrowerRequest');
     Route::post('/lender-request', 'Dashboard\DashboardController@lenderRequest')->name('lenderRequest');
     Route::get('/withdrawal', 'Dashboard\DashboardController@withdrawal')->name('withdrawal');
+    Route::get('/withdraw-invoice/{id}', 'Dashboard\DashboardController@withdrawinvoice');
+    Route::get('/withdrawlist/{id}', 'Dashboard\DashboardController@withdrawlist');
     Route::get('/invest/{id}', 'Dashboard\DashboardController@invest');
 
     Route::resource('/user', 'Dashboard\UserController');

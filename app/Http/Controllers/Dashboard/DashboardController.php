@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Loan;
+use App\Investment;
+use App\Withdrawal;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,7 +15,9 @@ class DashboardController extends Controller
 {
     public function index(){
         $user = Auth::user();
-        return view('dashboard.dashboard', compact('user'));
+        $loan = Loan::where('userid',$user->id)->get();
+        $investment = Investment::where('userid',$user->id)->get();
+        return view('dashboard.dashboard', compact('user','loan','investment'));
     }
 
     public function money(){
@@ -28,7 +32,11 @@ class DashboardController extends Controller
 
     public function earningHistory(){
         $user = Auth::user();
-        return view('dashboard.earning-history', compact('user'));
+        $loan = Loan::where('userid',$user->id)->get();
+        $investment = Investment::where('userid',$user->id)->get();
+        $withdrawal = Withdrawal::where('userid',$user->id)->get();
+
+        return view('dashboard.earning-history', compact('user','investment','withdrawal','loan'));
     }
     public function appsetting(){
         $user = Auth::user();
@@ -47,12 +55,33 @@ class DashboardController extends Controller
     }
     public function invest($id){
         $user = Auth::user();
-        return view('dashboard.invest', compact('user'));
+        $sid=$id;
+        return view('dashboard.invest', compact('user','sid'));
     }
     public function lenderRequest(Request $request){
         $user = Auth::user();
+        $sid = $request->input('id');
+        $investment = new Investment;
+        
+        $investment->firstname = $request->input('firstname');
+        $investment->email = $request->input('email');
+        $investment->lastname = $request->input('lastname');
+
+        $investment->phone = $request->input('phone');
+        $investment->card_name = $request->input('card_name');
+        $investment->card_number = $request->input('card_number');
+        $investment->card_expiration = $request->input('card_expiry_date');
+        $investment->payment1 = $request->input('payment1');
+        $investment->payment2 = $request->input('payment2');
+        $investment->invest_expiration = $request->input('prj_expiry_date');
+        $investment->amout = $request->input('prj_target');
+        $investment->loanid = $request->input('id');
+        $investment->bankname = $request->input('bankname');
+        $investment->userid = $user->id;
+        
+        $investment->save();
         $success = 'success';
-        return view('dashboard.invest', compact('user','success'));
+        return view('dashboard.invest', compact('user','success','sid'));
     }
     public function borrowerRequest(Request $request){
         
@@ -86,6 +115,9 @@ class DashboardController extends Controller
         $loan->trmon = $request->input('trmon');
         $loan->prj_expiry_date = $request->input('prj_expiry_date');
         $loan->prj_target = $request->input('prj_target');
+        $loan->userid = $user->id;
+
+
         if (!is_null($prj_file)) {
             $loan->prj_file = $prj_file;
         }
@@ -96,6 +128,23 @@ class DashboardController extends Controller
 
     public function withdrawal(){
         $user = Auth::user();
-        return view('dashboard.withdrawal', compact('user'));
+        $investment = Investment::where('userid',$user->id)->get();
+        return view('dashboard.withdrawal', compact('user','investment'));
+    }
+    public function withdrawlist($id){
+        $user = Auth::user();
+        $withdrawal = new Withdrawal;
+        $withdrawal->investid = $id;
+        $withdrawal->userid = $user->id;
+        $withdrawal->save();
+        $investment = Investment::where('id',$id)->first();
+        $success = 'success';
+        return view('dashboard.withdrawalinvoice', compact('user','investment','success'));
+    }
+    public function withdrawinvoice($id){
+        $user = Auth::user();
+        $investment = Investment::where('id',$id)->first();
+        
+        return view('dashboard.withdrawalinvoice', compact('user','investment'));
     }
 }

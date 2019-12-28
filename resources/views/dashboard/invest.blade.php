@@ -1,3 +1,4 @@
+
 @extends('dashboard.layout.newdash')
 @section('css')
 <!-- BEGIN PAGE LEVEL STYLES -->
@@ -7,6 +8,7 @@
 <link href="/metronic/global/css/components.css" id="style_components" rel="stylesheet" type="text/css"/>
 @endsection
 @section('navmenu')
+
     <ul class="nav nav-pills">
         <li class=""><a href="{{ route('dashboard') }}" >Dashboard</a></li>
         <li class=""><a href="{{ route('money') }}" >Money</a></li>
@@ -35,7 +37,7 @@
 					<div class="portlet box blue" id="form_wizard_1">
 						<div class="portlet-body form">
 							<form action="{{route('lenderRequest')}}" class="form-horizontal" id="submit_form" method="POST" enctype="multipart/form-data">
-								<input type="hidden" name="id" value="{{ $user->id }}">
+								<input type="hidden" name="id" value="{{$sid}}">
 								@csrf
 								<div class="form-wizard">
 									<div class="form-body">
@@ -131,7 +133,16 @@
 											</div>
 											<div class="tab-pane" id="tab2">
 												<h3 class="block">Provide your profile details</h3>
-												
+												<div class="form-group">
+													<label class="control-label col-md-3"> Bank for Distribution<span class="required">
+													* </span>
+													</label>
+													<div class="col-md-4">
+														<input type="text" class="form-control" name="bankname"/>
+														<span class="help-block">
+														e.g iFounding Group </span>
+													</div>
+												</div>
 												<div class="form-group">
 													<label class="control-label col-md-3"> Invest Expiration<span class="required">
 													* </span>

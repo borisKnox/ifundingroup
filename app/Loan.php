@@ -7,4 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Loan extends Model
 {
     //
+    public function user()
+    {
+        return $this->belongsTo('App\User','userid');
+    }
+    public function investment()
+    {
+        return $this->hasMany('App\Investment','loanid');
+    }
 }

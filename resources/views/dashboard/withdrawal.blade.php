@@ -57,22 +57,26 @@
                                     <th>Status</th>
                                     <th>Date</th>
                                     <th>Amount</th>
-                                    <th>Contract</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+                            @if(count($investment)!=0)
+                                @foreach($investment as $value)
                                 <tr>
-                                    <td>Alexandra</td>
-                                    <td>Shopping Mall</td>
+                                    <td>{{$value->loan->firstname}} {{$value->loan->lastname}}</td>
+                                    <td>{{$value->loan->prjname}}</td>
                                     <td>B piece</td>
-                                    <td>iFounding Bank</td>
+                                    <td>{{$value->bankname}}</td>
                                     <td>Active</td>
-                                    <td>11/11/2019</td>
-                                    <td>B piece</td>
-                                    <td>5500$</td>
-                                    <td><button class="btn btn-default btn-sm waves-effect"><i class="notika-icon notika-trash"></i></button></td>
+                                    <td>{{$value->invest_expiration}}</td>
+                                    <td>{{$value->amout}}$</td>
+                                    <td><a href='{{url("/dashboard/withdraw-invoice/".$value->id)}}' class="btn btn-default btn-sm waves-effect"><i class="notika-icon notika-trash"></i></a></td>
                                 </tr>
+                                @endforeach
+                            @else
+                                <tr><td col-span='40'>No Records</td></tr>
+                            @endif
                             </tbody>
                         </table>
                     </div>
