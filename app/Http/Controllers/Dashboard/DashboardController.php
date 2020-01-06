@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Dashboard;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Session;
+use Stripe;
 use App\User;
 use App\Loan;
 use App\Investment;
@@ -78,7 +80,39 @@ class DashboardController extends Controller
         $investment->loanid = $request->input('id');
         $investment->bankname = $request->input('bankname');
         $investment->userid = $user->id;
+        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         
+        $product = Stripe\Product::create([
+            'name' => 'My SaaS Platform',
+            'type' => 'service',
+        ]);
+
+        $plan = Stripe\Plan::create([
+            'currency' => 'usd',
+            'interval' => 'month',
+            'product' => $product->id,
+            'nickname' => 'Pro Plan',
+            'amount' => 3000,
+        ]);
+        
+        $customer = Stripe\Customer::create([
+            'description' => 'Customer for jenny.rosen@example.com',
+            "source" => $request->stripeToken,
+        ]);
+        
+        $sui = Stripe\Subscription::create([
+            'customer' => $customer->id,
+            'items' => [['plan' => $plan->id]],
+        ]);
+        dd($sui);        
+        $charge=Stripe\Charge::create ([
+            "amount" => 100 * 100,
+            "currency" => "usd",
+            "source" => $request->stripeToken,
+            "description" => "Test payment from itsolutionstuff.com." 
+        ]);
+        $investment->chkey = $charge->id;
+
         $investment->save();
         $success = 'success';
         return view('dashboard.invest', compact('user','success','sid'));
@@ -113,11 +147,18 @@ class DashboardController extends Controller
         $loan->itsrate = $request->input('itsrate');
         $loan->ltv = $request->input('ltv');
         $loan->trmon = $request->input('trmon');
+        $loan->method = $request->input('paymethod');
         $loan->prj_expiry_date = $request->input('prj_expiry_date');
         $loan->prj_target = $request->input('prj_target');
         $loan->userid = $user->id;
-
-
+        $pk=Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        $charge=Stripe\Charge::create ([
+                "amount" => 100 * 100,
+                "currency" => "usd",
+                "source" => $request->stripeToken,
+                "description" => "Test payment from itsolutionstuff.com." 
+        ]);
+  
         if (!is_null($prj_file)) {
             $loan->prj_file = $prj_file;
         }
@@ -129,6 +170,7 @@ class DashboardController extends Controller
     public function withdrawal(){
         $user = Auth::user();
         $investment = Investment::where('userid',$user->id)->get();
+        
         return view('dashboard.withdrawal', compact('user','investment'));
     }
     public function withdrawlist($id){
@@ -138,6 +180,11 @@ class DashboardController extends Controller
         $withdrawal->userid = $user->id;
         $withdrawal->save();
         $investment = Investment::where('id',$id)->first();
+        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        $refund = Stripe\Refund::create([
+            'charge' => $investment->chkey,
+        ]);
+        // dd($refund);
         $success = 'success';
         return view('dashboard.withdrawalinvoice', compact('user','investment','success'));
     }

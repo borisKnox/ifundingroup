@@ -26,6 +26,12 @@
 	Your Request is successful!
 </div>
 @endif
+<div class='form-row row'>
+	<div class='col-md-12 error form-group hide'>
+		<div class='alert-danger alert'>Please correct the errors and try
+			again.</div>
+	</div>
+</div>
     <div class="modals-area">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="container">
@@ -34,7 +40,9 @@
 				<div class="col-md-12">
 					<div class="portlet box blue" id="form_wizard_1">
 						<div class="portlet-body form">
-							<form action="{{route('borrowerRequest')}}" class="form-horizontal" id="submit_form" method="POST" enctype="multipart/form-data">
+							<form action="{{route('borrowerRequest')}}" class="form-horizontal" data-cc-on-file="false"
+                                                    data-stripe-publishable-key="{{ env('STRIPE_KEY') }}"
+                                                    id="submit_form" method="POST" enctype="multipart/form-data">
 								<input type="hidden" name="id" value="{{ $user->id }}">
 								@csrf
 								<div class="form-wizard">
@@ -119,7 +127,7 @@
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="control-label col-md-3">Indian Citizen Number <span class="required">
+													<label class="control-label col-md-3">Citizen Number <span class="required">
 													* </span>
 													</label>
 													<div class="col-md-4">
@@ -258,6 +266,23 @@
 											<div class="tab-pane" id="tab3">
 												<h3 class="block">Provide your billing and credit card details</h3>
 												<div class="form-group">
+													<label class="control-label col-md-3">Payment Method <span class="required">
+													* </span>
+													</label>
+													<div class="col-md-4">
+														<div class="checkbox-list">
+															<label>
+															<input type="radio" name="paymethod" value="1" data-title="visa"/> visa </label>
+															<label>
+															<input type="radio" name="paymethod" value="2" data-title="banktransfer"/> banktransfer </label>
+														</div>
+														<img src='/nokia/img/logo/visa-logo.png' />
+														<img src='/nokia/img/logo/bank-transfer-logo.png' />
+														<div id="form_payment_error">
+														</div>
+													</div>
+												</div>
+												<div class="form-group">
 													<label class="control-label col-md-3">Card Holder Name <span class="required">
 													* </span>
 													</label>
@@ -272,7 +297,7 @@
 													* </span>
 													</label>
 													<div class="col-md-4">
-														<input type="text" class="form-control" name="card_number"/>
+														<input type="text" class="form-control card-number" name="card_number"/>
 														<span class="help-block">
 														</span>
 													</div>
@@ -282,19 +307,29 @@
 													* </span>
 													</label>
 													<div class="col-md-4">
-														<input type="text" placeholder="" class="form-control" name="card_cvc"/>
+														<input type="text" placeholder="" class="form-control card-cvc" name="card_cvc"/>
 														<span class="help-block">
 														</span>
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="control-label col-md-3">Expiration(MM/YYYY) <span class="required">
+													<label class="control-label col-md-3">Expiration Month(MM) <span class="required">
 													* </span>
 													</label>
 													<div class="col-md-4">
-														<input type="text" placeholder="MM/YYYY" data-mask='99/9999' maxlength="7" class="form-control" name="card_expiry_date"/>
+														<input type="text" placeholder="MM" data-mask='99' maxlength="7" class="form-control card-expiry-month" name="card_expiry_date"/>
 														<span class="help-block">
-														e.g 11/2020 </span>
+														e.g 11 </span>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-md-3">Expiration Year(YYYY) <span class="required">
+													* </span>
+													</label>
+													<div class="col-md-4">
+														<input type="text" placeholder="YYYY" data-mask='9999' maxlength="7" class="form-control card-expiry-year" name="card_expiry_date"/>
+														<span class="help-block">
+														e.g 2020 </span>
 													</div>
 												</div>
 												<div class="form-group">
@@ -339,7 +374,7 @@
 												</div>
 												<h4 class="form-section">Profile</h4>
 												<div class="form-group">
-													<label class="control-label col-md-3">Indian Citizen Number:</label>
+													<label class="control-label col-md-3"> Citizen Number:</label>
 													<div class="col-md-4">
 														<p class="form-control-static" data-display="citisencard">
 														</p>
@@ -427,7 +462,7 @@
 												<a href="javascript:;" class="btn blue button-next">
 												Continue <i class="m-icon-swapright m-icon-white"></i>
 												</a>
-												<a type='submit' class="btn green button-submit">
+												<a type='button' class="btn green button-submit">
 												Submit <i class="m-icon-swapright m-icon-white"></i>
 												</a>
 											</div>
@@ -454,9 +489,11 @@
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="/metronic/scripts/form-wizard.js"></script>
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script>
-    jQuery(document).ready(function() {       
-        FormWizard.init();
-    });
+
+$(function() {       
+	FormWizard.init();
+});
 </script>
 @endsection
