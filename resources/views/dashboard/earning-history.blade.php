@@ -19,36 +19,16 @@
                 <div class="modal-inner-pro">
                     <div class="row">
                         <h2 class="section-title">Earning</h2>
+                        @if(count($earnig)!=0)
+                        @foreach($earnig as $evalue)
                         <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                             <div class="contact-list" style='box-shadow: 0 2px 8px rgba(0,0,0,.2);'>
-                                <h2>11/11/2019</h2>
-                                <p>From Lending deposit to Akqushi at valued 11.60% interest of deposit 25000USD</p>
+                                <h2>{{$evalue->created}}</h2>
+                                <p>From Lending deposit to {{$evalue->id}} at valued 11.60% interest of deposit {{$evalue->amount}}USD</p>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                            <div class="contact-list" style='box-shadow: 0 2px 8px rgba(0,0,0,.2);'>
-                                <h2>11/11/2019</h2>
-                                <p>From Lending deposit to Akqushi at valued 11.60% interest of deposit 25000USD</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                            <div class="contact-list" style='box-shadow: 0 2px 8px rgba(0,0,0,.2);'>
-                                <h2>11/11/2019</h2>
-                                <p>From Lending deposit to Akqushi at valued 11.60% interest of deposit 25000USD</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                            <div class="contact-list" style='box-shadow: 0 2px 8px rgba(0,0,0,.2);'>
-                                <h2>11/11/2019</h2>
-                                <p>From Lending deposit to Akqushi at valued 11.60% interest of deposit 25000USD</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" style='margin-top:10px'>
-                            <div class="contact-list" style='box-shadow: 0 2px 8px rgba(0,0,0,.2);'>
-                                <h2>11/11/2019</h2>
-                                <p>From Lending deposit to Akqushi at valued 11.60% interest of deposit 25000USD</p>
-                            </div>
-                        </div>
+                        @endforeach
+                        @endif
                     </div>
                     <hr>
                     <div class="row">
@@ -67,24 +47,16 @@
                     <hr>
                     <div class="row">
                         <h2 class="section-title">Bonus</h2>
+                        @if(count($subscript)!=0)
+                        @foreach($subscript as $ssvalue)
                         <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                             <div class="contact-list" style='box-shadow: 0 2px 8px rgba(0,0,0,.2);'>
-                                <h2>12/25/2019</h2>
-                                <p>Get Bonus from Akqushi at valued deposit 25000USD</p>
+                                <h2>{{$ssvalue->created}}</h2>
+                                <p>Get Bonus from {{$ssvalue->id}} at valued deposit {{$ssvalue->quantity}}USD</p>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                            <div class="contact-list" style='box-shadow: 0 2px 8px rgba(0,0,0,.2);'>
-                                <h2>12/25/2019</h2>
-                                <p>Get Bonus from Akqushi at valued deposit 25000USD</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                            <div class="contact-list" style='box-shadow: 0 2px 8px rgba(0,0,0,.2);'>
-                                <h2>12/25/2019</h2>
-                                <p>Get Bonus from Akqushi at valued deposit 25000USD</p>
-                            </div>
-                        </div>
+                        @endforeach
+                        @endif
                     </div>
                     <hr>
                     <div class="row">

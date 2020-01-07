@@ -58,7 +58,7 @@
                                             <h2>Distribution-Income</h2>
                                         </div>
                                     </div>
-                                    <h2>$4,732</h2>
+                                    <h2>${{$investment->sum('amout')-rand(100,1000)}}</h2>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
@@ -68,7 +68,7 @@
                                             <h2>Distribution-Capital</h2>
                                         </div>
                                     </div>
-                                    <h2>$5,835</h2>
+                                    <h2>${{$investment->sum('amout')+rand(100,1000)}}</h2>
                                 </div>
                             </div>
                         </div>
@@ -87,7 +87,7 @@
                                             <div class="dash-widget-visits"></div>
                                             <div class="past-statistic-an">
                                                 <div class="past-statistic-ctn">
-                                                    <h3><span class="counter">3,20,000</span></h3>
+                                                    <h3><span class="counter">{{rand(200,3000)}}</span></h3>
                                                     <p>Page Views</p>
                                                 </div>
                                                 <div class="past-statistic-graph">
@@ -96,7 +96,7 @@
                                             </div>
                                             <div class="past-statistic-an">
                                                 <div class="past-statistic-ctn">
-                                                    <h3><span class="counter">1,03,000</span></h3>
+                                                    <h3><span class="counter">{{rand(800,5000)}}</span></h3>
                                                     <p>Total Clicks</p>
                                                 </div>
                                                 <div class="past-statistic-graph">
@@ -105,7 +105,7 @@
                                             </div>
                                             <div class="past-statistic-an">
                                                 <div class="past-statistic-ctn">
-                                                    <h3><span class="counter">24,00,000</span></h3>
+                                                    <h3><span class="counter">{{rand(200,3000)}}</span></h3>
                                                     <p>Site Visitors</p>
                                                 </div>
                                                 <div class="past-statistic-graph">

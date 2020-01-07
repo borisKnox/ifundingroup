@@ -37,8 +37,11 @@ class DashboardController extends Controller
         $loan = Loan::where('userid',$user->id)->get();
         $investment = Investment::where('userid',$user->id)->get();
         $withdrawal = Withdrawal::where('userid',$user->id)->get();
-
-        return view('dashboard.earning-history', compact('user','investment','withdrawal','loan'));
+        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        $earnig = Stripe\Charge::all()->data;
+        $subscript = Stripe\Subscription::all()->data;
+        // dd($subscript);
+        return view('dashboard.earning-history', compact('user','investment','withdrawal','loan','earnig','subscript'));
     }
     public function appsetting(){
         $user = Auth::user();
@@ -63,6 +66,7 @@ class DashboardController extends Controller
     public function lenderRequest(Request $request){
         $user = Auth::user();
         $sid = $request->input('id');
+        $loan = Loan::find($sid);
         $investment = new Investment;
         
         $investment->firstname = $request->input('firstname');
@@ -81,9 +85,9 @@ class DashboardController extends Controller
         $investment->bankname = $request->input('bankname');
         $investment->userid = $user->id;
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-        
+
         $product = Stripe\Product::create([
-            'name' => 'My SaaS Platform',
+            'name' => 'My',
             'type' => 'service',
         ]);
 
@@ -96,22 +100,32 @@ class DashboardController extends Controller
         ]);
         
         $customer = Stripe\Customer::create([
-            'description' => 'Customer for jenny.rosen@example.com',
+            'email' => 'nikolaynikolvich119@gmail.com',
+            'description' => 'Customer for'.$loan->email,
             "source" => $request->stripeToken,
         ]);
-        
-        $sui = Stripe\Subscription::create([
+        $invoice = Stripe\Subscription::create([
             'customer' => $customer->id,
             'items' => [['plan' => $plan->id]],
+            'collection_method' => 'send_invoice',
+            'days_until_due' => 30,
         ]);
-        dd($sui);        
-        $charge=Stripe\Charge::create ([
-            "amount" => 100 * 100,
-            "currency" => "usd",
-            "source" => $request->stripeToken,
-            "description" => "Test payment from itsolutionstuff.com." 
-        ]);
-        $investment->chkey = $charge->id;
+        // dd($invoice);
+        // $sui = Stripe\Subscription::create([
+        //     'customer' => $customer->id,
+        //     'items' => [['plan' => $plan->id]],
+        // ]);
+                
+        // $charge = Stripe\Charge::create([
+        //     "amount" => $request->input('prj_target'),
+        //     "currency" => "usd",
+        //     "source" => $request->stripeToken,
+        //     "transfer_data" => [
+        //       "destination" => $loan->stripe_accountid,
+        //     ],
+        //   ]);
+        // dd($sui);
+        $investment->chkey = $invoice->id;
 
         $investment->save();
         $success = 'success';
@@ -152,13 +166,17 @@ class DashboardController extends Controller
         $loan->prj_target = $request->input('prj_target');
         $loan->userid = $user->id;
         $pk=Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-        $charge=Stripe\Charge::create ([
-                "amount" => 100 * 100,
-                "currency" => "usd",
-                "source" => $request->stripeToken,
-                "description" => "Test payment from itsolutionstuff.com." 
+        $account = Stripe\Account::create([
+            'type' => 'custom',
+            'country' => 'US',
+            'email' => $request->input('email'),
+            'requested_capabilities' => [
+                'card_payments',
+                'transfers',
+            ],
         ]);
-  
+        $loan->stripe_accountid = $account->id;
+        // dd($account);
         if (!is_null($prj_file)) {
             $loan->prj_file = $prj_file;
         }
